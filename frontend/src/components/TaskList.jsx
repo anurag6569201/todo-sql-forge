@@ -26,28 +26,35 @@ const TaskList = () => {
     };
 
     return (
-        <div>
-            <h2>Task List</h2>
-            {tasks && tasks.length > 0 ? (
-                <ul>
-                    {tasks.map(task => (
-                        <li key={task.id}>
-                            <h3>{task.title}</h3>
-                            <p>{task.description}</p>
-                            <label>
-                                Completed: {task.completed ? 'Yes' : 'No'}
-                            </label>
-                            <EditTask taskId={task.id} onEdit={handleEdit} />
-                            <DeleteTask taskId={task.id} onDelete={handleDelete} />
-                        </li>
+        <div className="container mt-5">
+            <h2 className="text-center mb-4">Task List</h2>
+            {tasks.length > 0 ? (
+                <div className="row">
+                    {tasks.map((task) => (
+                        <div className="col-md-4 mb-4" key={task.id}>
+                            <div className="card shadow-sm">
+                                <div className="card-body">
+                                    <h5 className="card-title">{task.title}</h5>
+                                    <p className="card-text">{task.description}</p>
+                                    <p className="text-muted">Completed: {task.completed ? 'Yes' : 'No'}</p>
+                                    <div className="mb-3">
+                                        {/* Delete Task button above Edit Task */}
+                                        <DeleteTask taskId={task.id} onDelete={handleDelete} />
+                                    </div>
+                                    <div>
+                                        {/* Edit Task Section */}
+                                        <EditTask taskId={task.id} onEdit={handleEdit} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     ))}
-                </ul>
+                </div>
             ) : (
-                <p>No tasks available</p> // Display this if no tasks are available
+                <p className="text-center">No tasks available</p>
             )}
         </div>
     );
-
 };
 
 export default TaskList;

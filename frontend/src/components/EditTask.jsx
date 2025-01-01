@@ -35,32 +35,48 @@ const EditTask = ({ taskId, onEdit }) => {
     };
 
     return (
-        <div>
-            <h2>Edit Task</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="title"
-                    value={task.title}
-                    onChange={handleChange}
-                    required
-                />
-                <textarea
-                    name="description"
-                    value={task.description}
-                    onChange={handleChange}
-                    required
-                />
-                <label>
-                    Completed:
+        <div className='container mt-4'>
+            <h2 className='text-center mb-4'>Edit Task</h2>
+            <form onSubmit={handleSubmit} className='bg-light p-4 rounded shadow-sm'>
+                <div className='mb-3'>
+                    <label htmlFor='title' className='form-label'>Title</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        className="form-control"
+                        value={task.title}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor='description' className='form-label'>Description</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        className="form-control"
+                        value={task.description}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className='mb-3'>
+                    <label htmlFor='completed' className='form-check-label'>
+                        Completed
+                    </label>
                     <input
                         type="checkbox"
+                        id="completed"
                         name="completed"
+                        className="form-check-input"
                         checked={task.completed}
                         onChange={(e) => setTask({ ...task, completed: e.target.checked })}
                     />
-                </label>
-                <button type="submit">Save Changes</button>
+                </div>
+                <button type="submit" className="btn btn-primary w-100">
+                    Save Changes
+                </button>
             </form>
         </div>
     );
